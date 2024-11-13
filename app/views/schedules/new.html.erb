@@ -1,0 +1,29 @@
+<div class="new-schedule-form">
+  <h1 class="page-title">新規作成</h1>
+  <%= render "shared/errors" , obj: @schedule %>
+  <%= form_with model: @schedule do |f| %>
+    <div>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+    </div>
+    <div>
+      <%= f.label :start_date %><br>
+      <%= f.date_field :start_date %>
+    </div>
+    <div>
+      <%= f.label :end_date %><br>
+      <%= f.date_field :end_date %>
+    </div>
+    <div>
+      <%= f.label :all_day %><br>
+      <%= f.check_box :all_day %>
+    </div>
+    <div>
+      <%= f.label :memo %><br>
+      <%= f.text_area :memo %>
+    </div>
+    <div>
+      <%= f.submit "完了" %>
+    </div>
+  <% end %>
+</div>

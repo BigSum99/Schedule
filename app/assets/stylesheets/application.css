@@ -1,15 +1,393 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+/* リセットCSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* 共通スタイル */
+.container {
+  font-family: Arial, sans-serif;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 20px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+.page-title {
+    padding: 15px 0;
+    font-size: 20px;
+}
+
+h1, h2 {
+  text-align: center;
+  color: #333;
+}
+
+h2 {
+  margin-bottom: 20px; /* タイトルの下に余白を追加 */
+  font-size: 1.5em; /* フォントサイズを大きくする */
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: #0069d9;
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+
+.new-schedule-form, .edit-schedule-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.new-schedule-form form div,
+.edit-schedule-form form div {
+  margin-bottom: 15px;
+}
+
+.new-schedule-form label,
+.edit-schedule-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.new-schedule-form input[type="text"],
+.new-schedule-form input[type="date"],
+.new-schedule-form textarea,
+.edit-schedule-form input[type="text"],
+.edit-schedule-form input[type="date"],
+.edit-schedule-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.new-schedule-form input[type="checkbox"],
+.edit-schedule-form input[type="checkbox"] {
+  margin-left: 5px;
+}
+
+.new-schedule-form input[type="submit"],
+.edit-schedule-form input[type="submit"] {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 20px 0;
+  background-color: #0069d9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-schedule-form input[type="submit"]:hover,
+.edit-schedule-form input[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* スケジュール詳細ページのスタイル */
+.schedule-details {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.schedule-details h2 {
+  margin-bottom: 20px; /* タイトルの下に余白を追加 */
+  font-size: 1.5em; /* フォントサイズを大きくする */
+}
+
+.table-container {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
+  color: black;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #f1f1f1;
+}
+
+.error {
+  color: red;
+  margin-bottom: 10px;
+}
+
+a {
+  color: #0069d9;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:visited {
+  color: #0069d9;
+}
+
+a.back-link {
+  display: block;
+  text-align: center;
+  color: #0069d9;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+a.back-link:hover {
+  text-decoration: underline;
+}
+
+a.back-link:visited {
+  color: #0069d9;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+/* Header Styles */
+header {
+  background-color: #1b3653;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  margin: 0; /* ヘッダーの周りの余白を消す */
+}
+
+.head-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.head-text {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* app/assets/stylesheets/application.css または app/javascript/stylesheets/application.scss */
+
+.flash-messages {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 1000;
+  text-align: center;
+}
+
+.flash {
+  margin: 0;
+  padding: 20px;
+  color: #fff;
+  font-size: 14px;
+}
+
+.flash.notice {
+  background-color: #4CAF50; /* グリーン系の背景色（成功メッセージ） */
+}
+
+.flash.alert {
+  background-color: #f44336; /* レッド系の背景色（エラーメッセージ） */
+}
+
+
+/* app/assets/stylesheets/application.css または app/javascript/stylesheets/application.scss */
+
+/* モーダルの背景とコンテナ */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #dee2e6;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.close-btn {
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.close-btn:hover, .close-btn:focus {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-body {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 90px; /* ここでボタン間のスペースを調整 */
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+#confirm-delete-btn {
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+
+
+/* レスポンシブ対応 */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px 5px;
+  }
+
+  .new-schedule-form, .edit-schedule-form, .schedule-details {
+    max-width: 100%;
+  }
+
+  table, th, td {
+    font-size: 14px;
+  }
+
+  .btn {
+    padding: 8px 15px;
+  }
+
+  h1, h2 {
+    font-size: 24px;
+  }
+
+  a.back-link {
+    font-size: 14px;
+  }
+}

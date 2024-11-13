@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="header-container">
+    <h1 class="page-title">予定一覧</h1>
+    <%= button_to :new_schedule, method: :get, class: "btn btn-primary new-schedule-btn" do %>
+      <span>+</span>新規追加
+    <% end %>
+  </div>
+  <table>
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>タイトル</th>
+          <th>開始日</th>
+          <th>終了日</th>
+          <th>終日</th>
+          <th>更新日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @schedules.each do |schedule| %>
+          <tr>
+            <td><%= schedule.id %></td>
+            <td><%= schedule.title %></td>
+            <td><%= schedule.start_date.strftime("%Y/%m/%d") %></td>
+            <td><%= schedule.end_date.strftime("%Y/%m/%d") %></td>
+            <td>
+              <% if schedule.all_day %>
+                <%= "⚪︎" %>
+              <% else %>
+                <%= "" %>
+              <% end %>
+            </td>
+            <td><%= schedule.updated_at.to_s(:datetime_jp) %></td>
+            <td><%= link_to "詳細", schedule_path(schedule), method: :get %></td>
+            <td><%= link_to "編集", [:edit, schedule] %></td>
+            <td><%= link_to "削除", "#", class: "delete-btn", data: { id: schedule.id, title: schedule.title } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  <footer>
+    <div>
+      <p>予定合計<%= @schedules_count%>件</p>
+      <p>本日の日付<%= Date.today.strftime("%Y/%m/%d") %></p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- モーダルのテンプレート -->
+<div id="deleteModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="modal-title">確認</span>
+      <span class="close-btn">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p id="modal-text">この操作を実行してもよろしいですか？</p>
+    </div>
+    <div class="modal-footer">
+      <%= form_with model: @schedule, method: :delete, local: true do |form| %>
+        <%= form.submit "削除", id: "confirm-delete-btn", class: "btn btn-primary" %>
+      <% end %>
+      <button class="close-btn btn btn-secondary">キャンセル</button>
+    </div>
+  </div>
+</div>
