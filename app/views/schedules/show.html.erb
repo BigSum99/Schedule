@@ -1,0 +1,36 @@
+<div class="schedule-details">
+  <h1 class="page-title">スケジュール詳細</h1>
+  <div>
+    <h2><%= @schedule.title %></h2>
+    <%= link_to "編集", edit_schedule_path %>
+  </div>
+  <div class="table-container">
+    <table>
+      <tbody>
+        <tr>
+          <th>開始日</th>
+          <td><%= @schedule.start_date.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <th>終了日</th>
+          <td><%= @schedule.end_date.strftime("%Y/%m/%d") %></td>
+        </tr>
+        <tr>
+          <th>終日</th>
+          <td>
+            <% if @schedule.all_day %>
+              <%= "⚪︎" %>
+            <% else %>
+              <%= "" %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th>スケジュールメモ</th>
+          <td><%= @schedule.memo %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <a href="/schedules" class="back-link"><span>←</span>一覧に戻る</a>
+</div>
